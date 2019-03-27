@@ -1,0 +1,163 @@
+<div id="mainContainer">
+  <app-header></app-header>
+  <mat-form-field id="searchFilter">
+    <input matInput #input placeholder="Search..." autocomplete="off">
+    <mat-spinner matSuffix *ngIf="dataSource.loading | async" [diameter]="15" class="mat-spinner-color"></mat-spinner>
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="input.value" (click)="clearSearch()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <form [formGroup]="_userService.userForm" class="normal-form">
+    <!--Table related html starts from below-->
+
+    <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8" matSortActive="firstname" matSort matSortDirection="asc" (matSortChange)="dataSource.fetchSpecificPages(getCurrentPageParam())">
+
+      <!-- firstname Column -->
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!row.editing">
+            {{row.firstname}}
+          </ng-container>
+          <mat-form-field *ngIf="row.editing">
+            <input matInput placeholder="{{row.firstname}}" [(ngModel)]="row.firstname" formControlName="firstname">
+            <mat-error>Required and Max length 25</mat-error>
+          </mat-form-field>
+        </td>
+
+      </ng-container>
+
+      <!-- lastname Column -->
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> LastName </th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!row.editing">
+            {{row.lastname}}
+          </ng-container>
+          <mat-form-field *ngIf="row.editing">
+            <input matInput placeholder="{{row.lastname}}" [(ngModel)]="row.lastname" formControlName="lastname">
+            <mat-error>Required and Max length 25</mat-error>
+          </mat-form-field>
+        </td>
+
+      </ng-container>
+
+      <!-- email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!row.editing">
+            {{row.email}}
+          </ng-container>
+          <mat-form-field *ngIf="row.editing">
+            <input matInput placeholder="{{row.email}}" [(ngModel)]="row.email" formControlName="email" type="email">
+            <mat-error>Required and Max length 50</mat-error>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- address Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!row.editing">
+            {{row.address}}
+          </ng-container>
+          <mat-form-field *ngIf="row.editing">
+            <input matInput placeholder="{{row.address}}" [(ngModel)]="row.address" formControlName="address">
+            <mat-error>Max length 100</mat-error>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- interests Column -->
+      <ng-container matColumnDef="interests">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Interests </th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!row.editing">
+            {{row.interests}}
+          </ng-container>
+          <mat-form-field *ngIf="row.editing">
+            <input matInput placeholder="{{row.interests}}" [(ngModel)]="row.interests" formControlName="interests">
+            <mat-error>Max length 100</mat-error>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- age Column -->
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef> Age </th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!row.editing">
+            {{row.age}}
+          </ng-container>
+          <mat-form-field *ngIf="row.editing">
+            <input matInput placeholder="{{row.age}}" [(ngModel)]="row.age" formControlName="age">
+            <mat-error>Valid range [1 - 120]</mat-error>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- picture column -->
+      <ng-container matColumnDef="picture">
+        <th mat-header-cell *matHeaderCellDef> Picture </th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!row.editing">
+            <div class="img-preview-container">
+              <div *ngIf=" (row.picture!='' && row.picture )">
+                <div class="img-preview"
+                     [ngStyle]="{'background-image': 'url('+ row.picture +')'}">
+                </div>
+              </div>
+              <div *ngIf="((!row.picture) || row.picture == '')">
+                <div class="img-preview"
+                     [ngStyle]="{'background-image': 'url(/assets/image/user.png)'}">
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="row.editing">
+            <label class="image-upload-container btn-bwm">
+              <span>Upload</span>
+              <input #imageInput style="display: none"
+                     type="file"
+                     accept="image/*"
+                     (change)="acceptImageFile(imageInput)" >
+            </label>
+            <div class="img-preview-container" *ngIf="row.picture">
+              <div class="img-preview"
+                   [ngStyle]="{'background-image': 'url('+ row.picture + ')'}">
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actionsColumn">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="accent" (click)="createNew()"> <i class="material-icons">person_add</i></button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (mousedown)="cancelCurrentOperation()" (click)="startEdit($event, row)">
+            <i class="material-icons">edit</i>
+          </button>
+          <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (click)="delete($event, row)">
+            <i class="material-icons">delete</i>
+          </button>
+          <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="saveEdit($event, row)">
+            <i class="material-icons">check</i>
+          </button>
+          <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="cancel($event, row)">
+            <i class="material-icons">cancel</i>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+    </table>
+  </form>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" [pageSize]="5" [length]="dataSource.pageMetadata?.RecordCount" (page)="pageEvent()"></mat-paginator>
+</div>

@@ -1,0 +1,58 @@
+<mat-toolbar>
+  <span>Add User</span>
+</mat-toolbar>
+<form [formGroup]="userService.userForm" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-tile>
+      <div class="controler-container">
+        <input type="hidden" formControlName="id">
+        <mat-form-field>
+          <input matInput placeholder="First Name*" formControlName="firstname">
+          <mat-error>Required and Max length is 25.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name*" formControlName="lastname">
+          <mat-error>Required and Max length is 25.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email*" formControlName="email" type="email">
+          <mat-error>Required in correct format and Max length is 50.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="address">
+          <mat-error>Max length 100</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Interests" formControlName="interests">
+          <mat-error>Max length 100</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Age" type="number" formControlName="age">
+          <mat-error>Valid range [1 - 120]</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controler-container">
+        <label class="image-upload-container btn-bwm">
+          <span>Click To Upload Picture</span>
+          <input #imageInput style="display: none"
+                 type="file"
+                 accept="image/*"
+                 (change)="acceptImageFile(imageInput)">
+        </label>
+        <div class="img-preview-container">
+          <div class="img-preview"
+               [ngStyle]="{'background-image': 'url('+ currentPicture + ')'}">
+          </div>
+        </div>
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="userService.userForm.invalid">Save</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Reset</button>
+          <button mat-raised-button color="warn" (click)="onClose()"><mat-icon>clear</mat-icon></button>
+        </div>
+
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

@@ -1,0 +1,53 @@
+form.normal-form {
+  margin: 10px;
+}
+
+.controler-container {
+  width: 100%;
+  padding: 5%;
+}
+
+  .controler-container > * {
+    width: 100%;
+  }
+
+.button-row button {
+  margin: 10px;
+}
+
+.btn-bwm {
+  background-color: burlywood;
+  border-color: #10805a;
+  color: black;
+  padding: 5px 5px;
+  font-size: 20px;
+}
+
+  .btn-bwm:hover, .btn-bwm:focus, .btn-bwm:active {
+    border-color: #10805a !important;
+    background-color: #36f49b !important;
+  }
+
+.image-upload-container {
+  cursor: pointer;
+}
+
+.img-preview-container {
+  background-color: #f7f7f7;
+  position: relative;
+}
+
+  .img-preview-container .img-preview {
+    background: center center no-repeat;
+    background-size: contain;
+    height: 70px;
+    width: 70px;
+  }
+
+/* for dialog pop-up */
+.btn-dialog-close {
+  width: 45px;
+  min-width: 0px !important;
+  height: 40px;
+  padding: 0px !important;
+}
