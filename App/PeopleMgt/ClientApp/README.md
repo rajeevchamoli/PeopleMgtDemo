@@ -1,31 +1,62 @@
-# PeopleMgt
+# People Management Web Application
+Demo application for basic user profile management.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+-***Technologies and tools used***:
+- Angular  (v7.1.x)
+- [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/2.2) (v2.2.x)
+- Entity framework core 
+- Sqlite DB (https://www.sqlite.org/2019/sqlite-dll-win64-x64-3270200.zip)
+- [Node.js](https://nodejs.org/en/download/) (v10.x.x) 
+- [VS 2017 community](https://visualstudio.microsoft.com/downloads/) (v15.9)
 
-## Install pakages
+# Pre-reqs
+Following products needs to be installed for development setup.
+1. Node.js
+2. Angular CLI (`npm install -g '@angular\cli'`)
+3. .Net Core 2.2
 
-Navigate to PeopleMgt\ClientApp folder and execute 'npm install'.
+## Get started
 
-## Development server
+### Clone the repo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```shell
+git clone https://github.com/rajeevchamoli/PeopleMgtDemo.git
+cd App
+```
 
-## Code scaffolding
+#### Two ways to build and launch the application
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Build using [VS 2017 community]
 
-## Build
+* Go to folder 'App'
+* Launch PeopleMgt.sln in VS 2017
+* Press F5 or run it  ( this might take some time to download the packages if not alredy done)
+* Application should launch in browser.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Manual build
 
-## Running unit tests
+## Install npm packages manually
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```shell
+Install the `npm` packages described in the `package.json` and verify that it works:
 
-## Running end-to-end tests
+```shell
+cd App\PeopleMgt\ClientApp
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Build Angular WebApp manually
 
-## Further help
+```shell
+cd App\PeopleMgt\ClientApp
+Ng build
+```
+* `Ng build` - runs the TypeScript compiler, asset copier.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Launch the Angular Web App
+
+```shell
+cd App\PeopleMgt\ClientApp
+Ng serve
+```
+
