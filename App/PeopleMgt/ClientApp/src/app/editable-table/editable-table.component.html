@@ -1,7 +1,7 @@
 <div id="mainContainer">
   <app-header></app-header>
   <mat-form-field id="searchFilter">
-    <input matInput #input placeholder="Search..." autocomplete="off">
+    <input matInput #input placeholder="Search by firstname | lastname | email | address | interests" autocomplete="off">
     <mat-spinner matSuffix *ngIf="dataSource.loading | async" [diameter]="15" class="mat-spinner-color"></mat-spinner>
     <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="input.value" (click)="clearSearch()">
       <mat-icon>clear</mat-icon>
