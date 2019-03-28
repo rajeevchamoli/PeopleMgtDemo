@@ -71,3 +71,21 @@ Ng serve
 #### Run xUnit test cases
 
 Test explorer in Visual Studio 2017 can help execute the testcases.
+
+
+# Snapshots
+
+#### Landing Page
+![Landing Page](Snapshots/LandingPage.PNG)
+
+#### Search, Sorting and Paging feature
+![Landing Page](Snapshots/Search_Sorting_Paging.PNG)
+
+#### Add User Dialog
+![Landing Page](Snapshots/AddUser_and_Validation.PNG)
+
+#### Inline edit feature
+![Landing Page](Snapshots/InlineEdit.PNG)
+
+#### Delete a record
+![Landing Page](Snapshots/DeletingTheRecord.PNG)
