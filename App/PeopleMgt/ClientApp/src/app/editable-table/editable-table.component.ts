@@ -167,12 +167,8 @@ export class EditableTableComponent implements OnInit, AfterViewInit {
     if (this._userService.userForm.valid) {
 
       let currentRecord = this._userService.userForm.value;
-
-      // row.picture can point to current selection by user or old value from server,
-      // hence it can be null / undefined unless it's old value was null and user also didn't choose
-      if (row.picture && row.picture != row.editedpicture) {
-        currentRecord.picture = row.picture
-      }
+      
+      currentRecord.picture = row.picture
 
       // create new resource
       if (!row.id) {
@@ -235,7 +231,7 @@ export class EditableTableComponent implements OnInit, AfterViewInit {
 
     this.input.nativeElement.value = '';
     this.paginator.pageIndex = 0;
-    this.dataSource.fetchAll();
+    this.dataSource.fetchSpecificPages(this.getCurrentPageParam());
   }
 
 

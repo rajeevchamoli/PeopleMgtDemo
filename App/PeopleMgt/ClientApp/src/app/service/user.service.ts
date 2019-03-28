@@ -23,7 +23,7 @@ export class UserService {
     email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50)]),
     firstname: new FormControl('', [Validators.required, Validators.maxLength(25)]),
     lastname: new FormControl('', [Validators.required, Validators.maxLength(25)]),
-    age: new FormControl(0, [Validators.min(0), Validators.max(120)]),
+    age: new FormControl(0, [Validators.min(1), Validators.max(120)]),
     address: new FormControl('', Validators.maxLength(100)),
     interests: new FormControl('', Validators.maxLength(100)),
     picture: new FormControl(null, Validators.maxLength(200000)) // 200KB ref: http://extraconversion.com/data-storage/kilobytes/kilobytes-to-characters.html
