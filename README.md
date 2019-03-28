@@ -1,7 +1,7 @@
 # People Management Web Application
 Demo application for basic user data management.
 
--***Technologies and tools used***:
+***Technologies and tools used***:
 - Angular  (v7.1.x)
 - [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/2.2) (v2.2.3)
 - Entity framework core 
